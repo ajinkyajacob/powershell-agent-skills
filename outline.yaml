@@ -1,0 +1,116 @@
+topic: powershell-agent-skills
+items:
+  - name: hmohamed01/powershell-expert
+    category: skill-pack
+    stars: 38
+    description: Full PowerShell dev skill covering scripts, tools, modules, GUIs (WinForms, WPF), PowerShell Gallery integration, and live documentation verification
+    ecosystem_role: skill-collection
+    skill_type: skill-pack
+  - name: jralph/.config-opencode/powershell-expert
+    category: style-guide
+    stars: null
+    description: PowerShell best practices and style guide — naming conventions, OTBS brace style, error handling, security patterns, cross-platform path handling
+    ecosystem_role: skill
+    skill_type: reference
+  - name: ffsshhttiikk/opencode-agents-skills/powershell
+    category: basic-scripting
+    stars: 2
+    description: Minimal PowerShell skill for Windows automation — write scripts, automate tasks, manage Active Directory, use modules
+    ecosystem_role: skill
+    skill_type: skill
+  - name: jshsakura/awesome-opencode-skills/powershell-5.1-expert
+    category: legacy-5.1
+    stars: 19
+    description: PowerShell 5.1 expert skill for legacy automation — .NET Framework interop, execution policy, remoting, encoding, admin boundaries
+    ecosystem_role: skill-collection
+    skill_type: skill
+  - name: dfinke/PSClaudeCode
+    category: agent-framework
+    stars: 82
+    description: PowerShell module implementing Claude Code concepts from scratch — OpenAI function calling, PSAI integration, file operations, conversational agent
+    ecosystem_role: cli-tool
+    skill_type: module
+  - name: dfinke/PSAI
+    category: agent-framework
+    stars: 266
+    description: PowerShell-native AI multi-agent orchestration framework — 329 commits, MIT, MCP support, TDD, CI. Foundational PowerShell+AI project
+    ecosystem_role: framework
+    skill_type: module
+  - name: dfinke/PSMCP
+    category: mcp-bridge
+    stars: 47
+    description: Turns PowerShell scripts into MCP conversational services — zero-YAML configuration, bridges PowerShell tooling with MCP ecosystem
+    ecosystem_role: framework
+    skill_type: module
+  - name: jorgeasaurus/agent-skills
+    category: skill-collection
+    stars: null
+    description: PowerShell skill collection including powershell-code-review, powershell-module-scaffold, powershell-nasa-power-of-ten, pwshspectreconsole-terminal-ui
+    ecosystem_role: skill-collection
+    skill_type: skill-pack
+  - name: Devolutions/powershell-universal-skills
+    category: enterprise
+    stars: null
+    description: Agent skills for PowerShell Universal (PSU) sandbox install — first enterprise PSU-specific skill pack, MIT
+    ecosystem_role: skill-collection
+    skill_type: skill-pack
+  - name: Azure/Metro.AI.PowerShell
+    category: enterprise
+    stars: null
+    description: PowerShell module managing Azure AI Agent & Assistant APIs — MCP server integration, multi-environment deployment, enterprise AI agent management
+    ecosystem_role: framework
+    skill_type: module
+  - name: PowerShell-official/GitHub-skills
+    category: official
+    stars: null
+    description: Official PowerShell team skills on GitHub — vscode-powershell/release, vscode-powershell/update-npm-packages, DSC/create-dsc-resource, PowerShell/analyze-pester-failures
+    ecosystem_role: skill-collection
+    skill_type: skill-pack
+  - name: start-automating/PowerShellAI
+    category: ai-module
+    stars: 35
+    description: Community-maintained OpenAI GPT-3/DALL-E PowerShell module — cross-platform, PowerShell Gallery installable, widely referenced
+    ecosystem_role: module
+    skill_type: module
+  - name: matheusallvarenga/claude-code-skills
+    category: general-collection
+    stars: 4
+    description: Collection of 33 skills for Claude Code including document processing, development tools, MCP configs — may include PowerShell-related entries
+    ecosystem_role: skill-collection
+    skill_type: skill-pack
+  - name: BallLightningAB/agent-skills-updater
+    category: management-tool
+    stars: null
+    description: Original PowerShell-based skill updater (v1.0.0 legacy) — multi-source skill sync for 43+ IDEs, before Python rewrite
+    ecosystem_role: cli-tool
+    skill_type: script
+
+  - name: yotsuda/PowerShell.MCP
+    category: mcp-server
+    stars: 3
+    description: Universal PS MCP server — 857 commits, PowerShell Gallery module. Shared console, persistent session, 10,000+ PS modules, cross-platform (Win/Linux/macOS)
+    ecosystem_role: mcp-server
+    skill_type: module
+  - name: github/awesome-copilot/powershell-instructions
+    category: official-instructions
+    stars: null
+    description: Official GitHub Copilot PowerShell instructions (.instructions.md) from 36K★ repo — cmdlet dev guidelines, naming, parameter design, error handling, formatting
+    ecosystem_role: reference
+    skill_type: reference
+  - name: gunjanjp/powershell-mcp
+    category: mcp-server
+    stars: 22
+    description: PS MCP server for Claude — execute commands/scripts, system monitoring, file ops, one-command setup. 12 commits, MIT
+    ecosystem_role: mcp-server
+    skill_type: script
+  - name: JosiahSiegel/powershell-master
+    category: skill-pack
+    stars: 1
+    description: Comprehensive PS Claude Code plugin — 7 slash commands (/pwsh-script, -module, -cicd, -azure, -performance), cross-platform, PSGallery, CI/CD, cloud automation
+    ecosystem_role: plugin
+    skill_type: skill-pack
+
+execution:
+  batch_size: 3
+  items_per_agent: 2
+  output_dir: ./results

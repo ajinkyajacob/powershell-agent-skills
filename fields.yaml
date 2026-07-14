@@ -1,0 +1,122 @@
+field_categories:
+  - category: Basic Info
+    fields:
+      - name: name
+        description: Skill or repository name
+        detail_level: brief
+      - name: repo_url
+        description: GitHub repository URL
+        detail_level: brief
+      - name: stars
+        description: GitHub star count
+        detail_level: brief
+      - name: forks
+        description: GitHub fork count
+        detail_level: brief
+      - name: description
+        description: One-line summary of what the skill/repo does
+        detail_level: brief
+      - name: license
+        description: Open source license type
+        detail_level: brief
+      - name: first_release_date
+        description: When the skill was first published or repo created
+        detail_level: moderate
+      - name: last_updated
+        description: Date of last commit or release
+        detail_level: moderate
+
+  - category: Scope
+    fields:
+      - name: skill_type
+        description: Type — skill-pack, skill, module, reference, cli-tool, framework, script
+        detail_level: brief
+      - name: ps_version
+        description: PowerShell version target — 5.1, 7+, both
+        detail_level: moderate
+      - name: platform
+        description: Platform support — Windows-only, cross-platform, Linux, macOS
+        detail_level: moderate
+      - name: skill_format
+        description: Format — SKILL.md, CLAUDE.md, .psm1 module, plugin, article/guide
+        detail_level: moderate
+      - name: skill_domain
+        description: Domain category — agent-framework, scripting-skill, module-dev, gui-dev, ai-agent-building, ci-cd, infra, gallery-mgmt, mcp-bridge
+        detail_level: moderate
+
+  - category: Content & Coverage
+    fields:
+      - name: skill_count
+        description: Number of individual skills or sub-skills bundled
+        detail_level: moderate
+      - name: command_count
+        description: Number of slash commands provided
+        detail_level: moderate
+      - name: reference_count
+        description: Number of reference or documentation files
+        detail_level: moderate
+      - name: coverage_areas
+        description: PowerShell domains covered — scripting, GUI, modules, DSC, remoting, security, testing, AI, MCP
+        detail_level: detailed
+
+  - category: Quality & Community
+    fields:
+      - name: source_quality_signals
+        description: Quality indicators — has tests, has CI, has changelog, has contributing guide
+        detail_level: moderate
+      - name: open_issues
+        description: Number of open GitHub issues
+        detail_level: moderate
+      - name: maintainer
+        description: Primary maintainer or organization
+        detail_level: brief
+      - name: ecosystem_crossref
+        description: Cross-references to related projects in the PowerShell AI ecosystem
+        detail_level: detailed
+      - name: psscriptanalyzer_integration
+        description: Whether skill references or requires PSScriptAnalyzer for linting
+        detail_level: detailed
+
+  - category: Installation & Requirements
+    fields:
+      - name: install_method
+        description: How to install — manual-copy, npx-command, PowerShell-Gallery, plugin-marketplace, bootstrap-script
+        detail_level: brief
+      - name: dependencies
+        description: Runtime requirements — PowerShell version, Python, Node, .NET, Docker
+        detail_level: moderate
+      - name: sdk_requirements
+        description: SDK dependencies — PSAI, OpenAI, Azure SDK, MCP SDK, PSResourceGet
+        detail_level: moderate
+      - name: install_complexity
+        description: Install effort — copy-only, single-command, multi-step, complex-setup
+        detail_level: detailed
+
+  - category: Use Case
+    fields:
+      - name: target_audience
+        description: Intended users — devs, admins, DevOps, AI engineers, enterprise
+        detail_level: moderate
+      - name: automation_domain
+        description: Primary automation domain — dev, ops, AI, infra, security, testing
+        detail_level: moderate
+      - name: complexity_level
+        description: Skill complexity — beginner, intermediate, advanced
+        detail_level: moderate
+      - name: runtime_compatibility
+        description: Compatible agent runtimes — OpenCode, Claude Code, Codex, Copilot CLI, Gemini CLI, Cursor
+        detail_level: moderate
+      - name: ai_framework_affiliation
+        description: Links to PowerShell AI frameworks — PSAI, PSClaudeCode, PowerShellAI, Metro.AI
+        detail_level: detailed
+
+uncertain:
+  - license
+  - first_release_date
+  - open_issues
+  - forks
+  - stars
+  - ps_version
+  - psscriptanalyzer_integration
+  - ecosystem_crossref
+  - ai_framework_affiliation
