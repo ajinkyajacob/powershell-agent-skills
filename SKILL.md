@@ -166,6 +166,7 @@ function Invoke-McpTool {
 ```powershell
 #Requires -Version 7.4
 #Requires -Modules @{ ModuleName = 'PSAI'; ModuleVersion = '1.0' }
+#Requires -Version 7.1
 
 function Invoke-AiAgent {
     [CmdletBinding()]
@@ -210,7 +211,7 @@ function Invoke-AiAgent {
 
 **Testing** — Pester v5 tests in `Tests/`. One `.tests.ps1` per function. Use `BeforeAll`/`AfterAll` for module import/cleanup. Mock external dependencies with `Mock`.
 
-**Publishing** — `Publish-Module -Name . -NuGetApiKey $key`. Use `PSResourceGet` (PowerShellGet v3) for modern workflows. Include `-LicenseUri`, `-ProjectUri`, `-Tags` in the manifest.
+**Publishing** — `Publish-Module -Path . -NuGetApiKey $key`. Use `PSResourceGet` (PowerShellGet v3) for modern workflows. Include `-LicenseUri`, `-ProjectUri`, `-Tags` in the manifest.
 
 ### 3. MCP Service Development
 
