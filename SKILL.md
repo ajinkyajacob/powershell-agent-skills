@@ -215,16 +215,34 @@ function Invoke-AiAgent {
 
 ### 3. MCP Service Development
 
-Choose a server approach:
+**Recommended: use `mcp/pwsh-mcp-server.ps1`** — a unified MCP server that replaces all four approaches below in a single file. No external module deps.
 
-| Approach | Best For | Install |
-|----------|----------|---------|
-| **PowerShell.MCP** (yotsuda) | Full PS ecosystem access | `Install-Module PowerShell.MCP` |
-| **PSMCP** (dfinke) | Script→MCP bridge | `Install-Module PSMCP` |
-| **powershell-mcp** (gunjanjp) | Claude-specific MCP | `npm install` + Node |
-| **Custom MCP server** | Fine-grained control | Use MCP SDK |
+```powershell
+.\mcp\pwsh-mcp-server.ps1           # Run as MCP server (stdio)
+.\mcp\pwsh-mcp-server.ps1 -Test     # Self-test (17 tools)
+.\mcp\pwsh-mcp-server.ps1 -Install  # Register with Claude Desktop
+```
 
-**Pattern** — Each tool function takes typed params, returns structured content with `type: "text"`. With PowerShell.MCP, tools export automatically via function discovery. With PSMCP, wrap scripts in `Invoke-PSMCP` with typed parameter blocks. Maintain persistent session state via module-level variables.
+**17 built-in tools** covering: system info, disk, processes, services (Win), environment, file read/write/search/list, script execution, native commands, session state.
+
+Merges capabilities from:
+
+| Source | Tools |
+|--------|-------|
+| **PowerShell.MCP** (yotsuda) | `file_read`, `file_write`, `file_search`, `file_list` |
+| **PSMCP** (dfinke) | `run_script`, `run_command` |
+| **powershell-mcp** (gunjanjp) | `session_get/set/list/clear` |
+| **Custom MCP SDK** | `system_info`, `disk_usage`, `process_list/kill`, `service_list/control`, `environment_get` |
+
+Legacy approaches (deprecated — kept for reference):
+
+| Approach | Install | Use if... |
+|----------|---------|-----------|
+| **PowerShell.MCP** | `Install-Module PowerShell.MCP` | Need PS ecosystem MCP with file ops |
+| **PSMCP** | `Install-Module PSMCP` | Need script→MCP bridge |
+| **powershell-mcp** (gunjanjp) | `npm install -g powershell-mcp` | Need Claude Code MCP |
+
+**Pattern** — Each tool function takes typed params, returns structured content with `type: "text"`. Maintain persistent session state via module-level variables.
 
 ### 4. AI Agent Building
 

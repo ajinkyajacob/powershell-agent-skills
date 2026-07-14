@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "pwsh-mcp": {
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-File",
+        "C:\\Users\\ajink\\Projects\\powershell-agent-skills\\mcp\\pwsh-mcp-server.ps1"
+      ]
+    }
+  }
+}
