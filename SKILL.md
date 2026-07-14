@@ -5,6 +5,7 @@ description: >-
   AI agents, GUIs, CI/CD, and enterprise automation. Amalgamates patterns from
   18 top PowerShell agent skills across the ecosystem.
 license: MIT
+compatibility: opencode, claude-code, codex-cli, copilot-cli, gemini-cli, cursor
 ---
 
 # PowerShell Agent Skill Pack
@@ -16,7 +17,7 @@ Develop production-quality PowerShell across the full spectrum: scripts, modules
 ### Script Template (advanced)
 
 ```powershell
-#Requires -Version 7.4
+#Requires -Version 5.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 
 <#
@@ -199,7 +200,7 @@ function Invoke-AiAgent {
 
 **Cross-platform** — Use `[System.IO.Path]::Combine()` or `Join-Path` over string concatenation. Check `$IsWindows`/`$IsLinux`/`$IsMacOS` for platform-specific blocks. Use environment-agnostic newlines (`[Environment]::NewLine`).
 
-**Performance** — Use `System.Collections.Generic.List[object]` for result accumulation. Pipeline for streaming, `ForEach-Object -Parallel` for CPU-bound work. Use `-Filter` over `-Include` for filesystem queries.
+**Performance** — Use `System.Collections.Generic.List[object]` for result accumulation. Pipeline for streaming, `ForEach-Object -Parallel` (PS 7+) for CPU-bound work. Use `-Filter` over `-Include` for filesystem queries.
 
 ### 2. Module Development
 
@@ -222,7 +223,7 @@ Choose a server approach:
 | **powershell-mcp** (gunjanjp) | Claude-specific MCP | `npm install` + Node |
 | **Custom MCP server** | Fine-grained control | Use MCP SDK |
 
-**Pattern** — Each tool function takes typed params, returns structured content with `type: "text"`. Register with `Get-McpTool` / `Export-McpTool`. Maintain persistent session state via module-level variables.
+**Pattern** — Each tool function takes typed params, returns structured content with `type: "text"`. With PowerShell.MCP, tools export automatically via function discovery. With PSMCP, wrap scripts in `Invoke-PSMCP` with typed parameter blocks. Maintain persistent session state via module-level variables.
 
 ### 4. AI Agent Building
 
@@ -268,7 +269,7 @@ Test-ModuleManifest .\*.psd1
 Publish-PSResource -Path .\ -ApiKey $env:NUGET_API_KEY
 
 # Or legacy (PowerShellGet v2)
-Publish-Module -Name .\ -NuGetApiKey $env:NUGET_API_KEY
+Publish-Module -Path .\ -NuGetApiKey $env:NUGET_API_KEY
 ```
 
 **Manifest essentials**: `ModuleVersion`, `Description`, `Author`, `CompanyName`, `Copyright`, `LicenseUri`, `ProjectUri`, `Tags`, `ReleaseNotes`, `RequireLicenseAcceptance` (if applicable).
@@ -290,6 +291,50 @@ if ($PSVersionTable.PSVersion.Major -lt 7) {
 }
 ```
 
+### 9. DSC (Desired State Configuration)
+
+**Structure** — Configuration blocks with `Node`, `Resource` definitions. Separate `.psd1` config data from `.ps1` config scripts. Use `ConfigurationData` for parameterized deployments.
+
+**Pattern**:
+```powershell
+Configuration WebServerConfig {
+    param([string[]]$NodeName = 'localhost')
+    Node $NodeName {
+        WindowsFeature IIS {
+            Ensure = 'Present'
+            Name   = 'Web-Server'
+        }
+    }
+}
+```
+
+**Testing** — Validate with `Test-DscConfiguration` after apply. Use `Update-DscConfiguration` for incremental changes.
+
+### 10. Testing with Pester
+
+**Structure** — Pester v5 in `Tests/`. One `.tests.ps1` per function. Use `Describe`/`It` blocks.
+
+**Pattern**:
+```powershell
+BeforeAll {
+    $module = Join-Path $PSScriptRoot '..\src\MyModule.psm1'
+    Import-Module $module -Force
+}
+
+Describe 'Get-Something' {
+    It 'returns valid output' {
+        $result = Get-Something -Name 'test'
+        $result | Should -Not -BeNullOrEmpty
+    }
+
+    It 'handles missing input' {
+        { Get-Something -Name '' } | Should -Throw
+    }
+}
+```
+
+**Mocking** — `Mock Get-ExternalCommand { return $fakeData }`. Use `ParameterFilter` for selective mocking. Verify calls with `Assert-MockCalled`.
+
 ## Reference
 
 - [PowerShell.MCP](https://github.com/yotsuda/PowerShell.MCP) — Universal MCP server
@@ -301,3 +346,6 @@ if ($PSVersionTable.PSVersion.Major -lt 7) {
 - [PSResourceGet](https://github.com/PowerShell/PSResourceGet) — Package management v3
 - [PowerShell Universal](https://www.powershelluniversal.com/) — Enterprise web dashboard
 - [Microsoft.Graph](https://learn.microsoft.com/powershell/microsoftgraph/overview) — Microsoft Graph PS SDK
+- [DSC](https://learn.microsoft.com/powershell/dsc/overview) — Desired State Configuration
+- [Pester](https://pester.dev) — Testing and mocking framework
+
